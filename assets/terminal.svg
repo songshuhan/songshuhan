@@ -14,6 +14,8 @@
       .name { fill: #f2f7fb; font-size: 27px; font-weight: bold; }
       .role { fill: #b7a8f2; font-size: 15px; font-weight: bold; }
       .body { fill: #c4d0e4; font-size: 14px; }
+      .topic { fill: #cfddf0; font-size: 12.5px; }
+      .topic-box { fill: #172338; stroke: #30445f; }
       .label { fill: #9db1d1; font-size: 12px; }
       .metric { fill: #e0f4ee; font-size: 21px; font-weight: bold; }
       .scope { fill: #93a7c6; font-size: 10.5px; }
@@ -1150,17 +1152,27 @@
     <text x="290" y="79" class="name">Shuhan Song</text>
     <text x="291" y="101" class="role">Assistant Researcher · ICT, CAS</text>
     <text x="291" y="122" class="body">High-Throughput Computing Systems Group</text>
-    <text x="291" y="151" class="prompt">$ research</text>
-    <text x="291" y="171" class="body">Graph ML · Self-supervised learning</text>
-    <text x="291" y="190" class="body">Robust graph learning · Recommender systems</text>
-    <text x="291" y="213" class="label">EMAIL</text>
-    <text x="343" y="213" class="body">songshuhan@ict.ac.cn</text>
+    <text x="291" y="146" class="prompt">$ research</text>
+    <rect x="291" y="157" width="228" height="19" rx="4" class="topic-box"/>
+    <path d="M 300,164 h 4 v 4 h -4 z" fill="#83e4c7"/>
+    <text x="312" y="171" class="topic">Graph ML</text>
+    <rect x="529" y="157" width="228" height="19" rx="4" class="topic-box"/>
+    <path d="M 538,164 h 4 v 4 h -4 z" fill="#83e4c7"/>
+    <text x="550" y="171" class="topic">Self-supervised learning</text>
+    <rect x="291" y="181" width="228" height="19" rx="4" class="topic-box"/>
+    <path d="M 300,188 h 4 v 4 h -4 z" fill="#83e4c7"/>
+    <text x="312" y="195" class="topic">Robust graph learning</text>
+    <rect x="529" y="181" width="228" height="19" rx="4" class="topic-box"/>
+    <path d="M 538,188 h 4 v 4 h -4 z" fill="#83e4c7"/>
+    <text x="550" y="195" class="topic">Recommender systems</text>
+    <text x="291" y="217" class="label">EMAIL</text>
+    <text x="343" y="217" class="body">songshuhan@ict.ac.cn</text>
     <text x="291" y="248" class="label">Repos</text>
     <text x="291" y="274" class="metric">4 / 7</text>
     <text x="291" y="294" class="scope">personal / lab</text>
     <text x="410" y="248" class="label">Stars</text>
-    <text x="410" y="274" class="metric">0 / 13</text>
-    <text x="410" y="294" class="scope">personal / lab</text>
+    <text x="410" y="274" class="metric">14</text>
+    <text x="410" y="294" class="scope">HTAI-Lab total</text>
     <text x="529" y="248" class="label">Commits</text>
     <text x="529" y="274" class="metric">179</text>
     <text x="529" y="294" class="scope">public authored</text>

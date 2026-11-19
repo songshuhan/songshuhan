@@ -98,7 +98,8 @@ def collect_stats():
         commits_future = executor.submit(api, "search/commits",
                                          q=f"author:{USER} is:public", per_page=1)
         personal = personal_future.result()
-        lab = [repo for repo in lab_future.result() if repo["name"] in LAB_PROJECTS]
+        lab_public = lab_future.result()
+        lab = [repo for repo in lab_public if repo["name"] in LAB_PROJECTS]
         commits = commits_future.result()
     if commits["incomplete_results"]:
         raise RuntimeError("GitHub returned partial commit-search results.")
@@ -112,8 +113,7 @@ def collect_stats():
     stats = {
         "personal_repos": len(personal),
         "lab_repos": len(lab),
-        "personal_stars": sum(repo["stargazers_count"] for repo in personal),
-        "lab_stars": sum(repo["stargazers_count"] for repo in lab),
+        "lab_stars": sum(repo["stargazers_count"] for repo in lab_public),
         "commits": commits["total_count"],
         "lines": sum(entry["lines"] for entry in line_counts.values()),
     }
@@ -136,9 +136,21 @@ def portrait_svg():
 
 
 def render(stats, cache):
+    research = [
+        ("Graph ML", 291, 157),
+        ("Self-supervised learning", 529, 157),
+        ("Robust graph learning", 291, 181),
+        ("Recommender systems", 529, 181),
+    ]
+    research_svg = "\n    ".join(
+        f'''<rect x="{x}" y="{y}" width="228" height="19" rx="4" class="topic-box"/>
+    <path d="M {x + 9},{y + 7} h 4 v 4 h -4 z" fill="#83e4c7"/>
+    <text x="{x + 21}" y="{y + 14}" class="topic">{label}</text>'''
+        for label, x, y in research
+    )
     metrics = [
         ("Repos", f"{stats['personal_repos']} / {stats['lab_repos']}", "personal / lab"),
-        ("Stars", f"{stats['personal_stars']} / {stats['lab_stars']}", "personal / lab"),
+        ("Stars", f"{stats['lab_stars']:,}", "HTAI-Lab total"),
         ("Commits", f"{stats['commits']:,}", "public authored"),
         ("Python LOC", f"{stats['lines']:,}", "public lab code"),
     ]
@@ -166,6 +178,8 @@ def render(stats, cache):
       .name {{ fill: #f2f7fb; font-size: 27px; font-weight: bold; }}
       .role {{ fill: #b7a8f2; font-size: 15px; font-weight: bold; }}
       .body {{ fill: #c4d0e4; font-size: 14px; }}
+      .topic {{ fill: #cfddf0; font-size: 12.5px; }}
+      .topic-box {{ fill: #172338; stroke: #30445f; }}
       .label {{ fill: #9db1d1; font-size: 12px; }}
       .metric {{ fill: #e0f4ee; font-size: 21px; font-weight: bold; }}
       .scope {{ fill: #93a7c6; font-size: 10.5px; }}
@@ -188,11 +202,10 @@ def render(stats, cache):
     <text x="290" y="79" class="name">Shuhan Song</text>
     <text x="291" y="101" class="role">Assistant Researcher · ICT, CAS</text>
     <text x="291" y="122" class="body">High-Throughput Computing Systems Group</text>
-    <text x="291" y="151" class="prompt">$ research</text>
-    <text x="291" y="171" class="body">Graph ML · Self-supervised learning</text>
-    <text x="291" y="190" class="body">Robust graph learning · Recommender systems</text>
-    <text x="291" y="213" class="label">EMAIL</text>
-    <text x="343" y="213" class="body">songshuhan@ict.ac.cn</text>
+    <text x="291" y="146" class="prompt">$ research</text>
+    {research_svg}
+    <text x="291" y="217" class="label">EMAIL</text>
+    <text x="343" y="217" class="body">songshuhan@ict.ac.cn</text>
     {stats_svg}
   </g>
 </svg>
