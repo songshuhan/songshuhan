@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/terminal.svg" width="100%" alt="Shuhan Song, Assistant Researcher at ICT, CAS. Research interests include graph machine learning, self-supervised learning, robustness, and recommender systems.">
+  <img src="./assets/terminal.svg" width="94%" alt="Shuhan Song, Assistant Researcher at the Institute of Computing Technology, Chinese Academy of Sciences. Research interests include graph machine learning, self-supervised learning, robust graph learning, and recommender systems.">
 </p>
 
 <p align="center">
@@ -20,10 +20,10 @@
 <details>
 <summary>How the numbers are counted</summary>
 
-- **Repos** lists my personal public repositories first and the seven featured HTAI-Lab projects second.
-- **Stars** sums the stars across all public repositories in the HTAI-Lab GitHub organization.
-- **Commits** are public commits attributed to my GitHub account and indexed on repository default branches.
-- **Python LOC** counts nonblank Python lines on the default branches of ALOHA, FilterMGAE, GPromptShield, SemFuse, and SPMGAE. The count excludes the bundled LLaMA-Factory tree and describes the codebases as a whole.
+- **Repositories** shows my personal public repositories first and the seven featured HTAI-Lab projects second.
+- **Lab stars** adds up stars across all public repositories in the HTAI-Lab GitHub organization.
+- **Public commits** counts commits on default branches that GitHub attributes to my account.
+- **Python lines** counts nonblank Python lines on the default branches of ALOHA, FilterMGAE, GPromptShield, SemFuse, and SPMGAE. The count excludes the bundled LLaMA-Factory tree and describes the codebases as a whole.
 
 </details>
 

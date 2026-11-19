@@ -137,29 +137,28 @@ def portrait_svg():
 
 def render(stats, cache):
     research = [
-        ("Graph ML", 291, 157),
-        ("Self-supervised learning", 529, 157),
-        ("Robust graph learning", 291, 181),
-        ("Recommender systems", 529, 181),
+        ("Graph machine learning", 291, 174),
+        ("Self-supervised learning", 529, 174),
+        ("Robust graph learning", 291, 194),
+        ("Recommender systems", 529, 194),
     ]
     research_svg = "\n    ".join(
-        f'''<rect x="{x}" y="{y}" width="228" height="19" rx="4" class="topic-box"/>
-    <path d="M {x + 9},{y + 7} h 4 v 4 h -4 z" fill="#83e4c7"/>
-    <text x="{x + 21}" y="{y + 14}" class="topic">{label}</text>'''
+        f'''<rect x="{x}" y="{y - 8}" width="4" height="4" rx="1" fill="#83e4c7"/>
+    <text x="{x + 13}" y="{y}" class="topic">{label}</text>'''
         for label, x, y in research
     )
     metrics = [
-        ("Repos", f"{stats['personal_repos']} / {stats['lab_repos']}", "personal / lab"),
-        ("Stars", f"{stats['lab_stars']:,}", "HTAI-Lab total"),
-        ("Commits", f"{stats['commits']:,}", "public authored"),
-        ("Python LOC", f"{stats['lines']:,}", "public lab code"),
+        ("Repositories", f"{stats['personal_repos']} / {stats['lab_repos']}", "Personal / lab"),
+        ("Lab stars", f"{stats['lab_stars']:,}", "HTAI-Lab total"),
+        ("Public commits", f"{stats['commits']:,}", "Authored by me"),
+        ("Python lines", f"{stats['lines']:,}", "Public lab code"),
     ]
     cells = []
     for column, (label, value, scope) in enumerate(metrics):
         x = 291 + column * 119
-        cells.append(f'''<text x="{x}" y="248" class="label">{label}</text>
-    <text x="{x}" y="274" class="metric">{value}</text>
-    <text x="{x}" y="294" class="scope">{scope}</text>''')
+        cells.append(f'''<text x="{x}" y="254" class="label">{label}</text>
+    <text x="{x}" y="279" class="metric">{value}</text>
+    <text x="{x}" y="298" class="scope">{scope}</text>''')
     stats_svg = "\n    ".join(cells)
     metadata = escape(json.dumps(cache, sort_keys=True))
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="788" height="322" viewBox="0 0 788 322" role="img" aria-labelledby="title description">
@@ -172,21 +171,22 @@ def render(stats, cache):
       <stop offset="1" stop-color="#101520"/>
     </linearGradient>
     <style>
-      text {{ font-family: "DejaVu Sans Mono", "Liberation Mono", Consolas, monospace; }}
+      text {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "DejaVu Sans", sans-serif; }}
+      .prompt, .cmd, .metric, .portrait text {{ font-family: "DejaVu Sans Mono", "Liberation Mono", Consolas, monospace; }}
       .prompt {{ fill: #83e4c7; font-size: 14px; font-weight: bold; }}
       .cmd {{ fill: #abb9d5; font-size: 14px; }}
-      .name {{ fill: #f2f7fb; font-size: 27px; font-weight: bold; }}
-      .role {{ fill: #b7a8f2; font-size: 15px; font-weight: bold; }}
+      .name {{ fill: #f2f7fb; font-size: 31px; font-weight: bold; }}
+      .role {{ fill: #b7a8f2; font-size: 14px; font-weight: 600; }}
       .body {{ fill: #c4d0e4; font-size: 14px; }}
-      .topic {{ fill: #cfddf0; font-size: 12.5px; }}
-      .topic-box {{ fill: #172338; stroke: #30445f; }}
+      .topic {{ fill: #cfddf0; font-size: 14px; }}
+      .section {{ fill: #83e4c7; font-size: 13px; font-weight: 600; }}
       .label {{ fill: #9db1d1; font-size: 12px; }}
       .metric {{ fill: #e0f4ee; font-size: 21px; font-weight: bold; }}
-      .scope {{ fill: #93a7c6; font-size: 10.5px; }}
+      .scope {{ fill: #93a7c6; font-size: 11px; }}
     </style>
   </defs>
   <rect x="1" y="1" width="786" height="320" rx="16" fill="url(#shell)" stroke="#35445f" stroke-width="2"/>
-  <path d="M 1,40 H 787 M 272,51 V 306 M 290,227 H 761" stroke="#304058" stroke-width="1"/>
+  <path d="M 1,40 H 787 M 272,54 V 302 M 290,235 H 761 M 396,246 V 299 M 515,246 V 299 M 634,246 V 299" stroke="#304058" stroke-width="1"/>
   <text x="23" y="26" class="prompt">songshuhan@ict:~$</text>
   <text x="179" y="26" class="cmd">whoami</text>
   <rect x="232" y="14" width="7" height="13" rx="1" fill="#94e9cf">
@@ -195,17 +195,17 @@ def render(stats, cache):
   <circle cx="729" cy="21" r="4" fill="#9b93d9"/>
   <circle cx="746" cy="21" r="4" fill="#6cb8cb"/>
   <circle cx="763" cy="21" r="4" fill="#80cfb5"/>
-  <g font-size="7.45" xml:space="preserve" aria-hidden="true">
+  <g class="portrait" font-size="7.45" xml:space="preserve" aria-hidden="true">
     {portrait_svg()}
   </g>
   <g>
     <text x="290" y="79" class="name">Shuhan Song</text>
-    <text x="291" y="101" class="role">Assistant Researcher · ICT, CAS</text>
-    <text x="291" y="122" class="body">High-Throughput Computing Systems Group</text>
-    <text x="291" y="146" class="prompt">$ research</text>
+    <text x="291" y="104" class="role">Assistant Researcher · ICT, Chinese Academy of Sciences</text>
+    <text x="291" y="125" class="body">High-Throughput Computing Systems Group</text>
+    <text x="291" y="151" class="section">Research interests</text>
     {research_svg}
-    <text x="291" y="217" class="label">EMAIL</text>
-    <text x="343" y="217" class="body">songshuhan@ict.ac.cn</text>
+    <text x="291" y="220" class="label">Email</text>
+    <text x="335" y="220" class="body">songshuhan@ict.ac.cn</text>
     {stats_svg}
   </g>
 </svg>
